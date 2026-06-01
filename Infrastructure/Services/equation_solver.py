@@ -17,7 +17,7 @@ class EquationSolver:
         variables_cfg = cfg["variables"]
 
         state_vars = self._identify_state_vars(equations)
-        y0 = [ic[v] for v in state_vars]
+        y0 = [ic[v]["value"] for v in state_vars]
 
         t_span = (time_cfg["min"], t_end)
         t_eval = np.arange(time_cfg["min"], t_end + time_cfg["step"], time_cfg["step"])

@@ -25,7 +25,19 @@ bioreactor/
 │
 └── Api/
     └── Controllers/
-        └── simulation_controller.py     ← Streamlit UI
+        ├── atoms/                       ← Componentes atómicos (reutilizables)
+        │   ├── metric_card.py
+        │   ├── section_title.py
+        │   └── status_badge.py
+        ├── molecules/                   ← Componentes moleculares (reutilizables)
+        │   └── time_control.py
+        └── simulations/
+            ├── simulation_controller.py ← Página principal (orquestador)
+            └── molecules/
+                ├── sidebar.py
+                ├── results_metrics.py
+                ├── plots.py
+                └── data_table.py
 ```
 
 ## Instalación y ejecución
@@ -35,7 +47,7 @@ bioreactor/
 pip install -r requirements.txt
 
 # 2. Lanzar la aplicación
-streamlit run Api/Controllers/simulation_controller.py
+streamlit run Api/Controllers/simulations/simulation_controller.py
 ```
 
 ## Sistema de ecuaciones
