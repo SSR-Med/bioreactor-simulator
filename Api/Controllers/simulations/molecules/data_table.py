@@ -2,11 +2,12 @@ import pandas as pd
 import streamlit as st
 
 
-def render_data_table(result, t):
+def render_data_table(result, t, cfg):
     with st.expander("Tabla de resultados num\u00e9ricos"):
-        df = pd.DataFrame({"t (h)": t})
+        df = pd.DataFrame({cfg["time"]["axis_label"]: t})
         for var_name, var_res in result.variables.items():
-            df[f"{var_name} ({var_res.unit})"] = var_res.values
+            info = cfg["variables"][var_name]
+            df[f"{info['label']} ({var_res.unit})"] = var_res.values
 
         st.dataframe(
             df.style.format("{:.4f}"),

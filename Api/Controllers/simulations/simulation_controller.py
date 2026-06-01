@@ -154,4 +154,4 @@ st.markdown("---")
 
 render_plots(result, cfg)
 
-render_data_table(result, result.t)
+render_data_table(result, result.t, cfg)
