@@ -26,8 +26,8 @@ def render_sidebar(cfg):
 
         st.markdown("---")
         render_section_title("Ecuaciones del modelo")
-        for name, expr in cfg["equations"].items():
+        for name, eq in cfg["equations"].items():
             with st.expander(name):
-                st.code(expr, language="python")
+                st.latex(eq["latex"])
 
     return t_end

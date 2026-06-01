@@ -85,12 +85,12 @@ class EquationSolver:
         for i, name in enumerate(state_vars):
             namespace[name] = max(y[i], 0.0)
 
-        for name, expr in equations.items():
+        for name, eq in equations.items():
             if not (name.startswith("d") and name.endswith("_dt")):
-                namespace[name] = eval(expr, {"__builtins__": {}}, namespace)
+                namespace[name] = eval(eq["expr"], {"__builtins__": {}}, namespace)
 
         return [
-            eval(equations[f"d{name}_dt"], {"__builtins__": {}}, namespace)
+            eval(equations[f"d{name}_dt"]["expr"], {"__builtins__": {}}, namespace)
             for name in state_vars
         ]
 
@@ -101,9 +101,9 @@ class EquationSolver:
             namespace[name] = state_results[name]
 
         result = dict(state_results)
-        for name, expr in equations.items():
+        for name, eq in equations.items():
             if name.startswith("d") and name.endswith("_dt"):
                 continue
-            result[name] = eval(expr, {"__builtins__": {}}, namespace)
+            result[name] = eval(eq["expr"], {"__builtins__": {}}, namespace)
 
         return result
