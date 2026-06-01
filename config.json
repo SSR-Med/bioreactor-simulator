@@ -1,0 +1,28 @@
+{
+  "time": {
+    "min": 0,
+    "max": 72,
+    "step": 0.1,
+    "default": 72,
+    "unit": "h"
+  },
+  "variables": {
+    "X": { "unit": "g/L", "description": "Concentración de biomasa" },
+    "S": { "unit": "g/L", "description": "Concentración de sustrato" },
+    "P": { "unit": "g/L", "description": "Concentración de producto" },
+    "V": { "unit": "m³", "description": "Volumen del biorreactor" }
+  },
+  "initial_conditions": {
+    "X": 0.05,
+    "S": 40.0,
+    "P": 0.0,
+    "V": 47.1
+  },
+  "equations": {
+    "V": "47.1 + 0.28 * t",
+    "mu": "0.28 * S / (5 + S)",
+    "dX_dt": "mu * X - (0.28 / (47.1 + 0.28 * t)) * X",
+    "dS_dt": "(0.28 / (47.1 + 0.28 * t)) * (200 - S) - 2.478 * mu * X",
+    "dP_dt": "1.436 * mu * X - (0.28 / (47.1 + 0.28 * t)) * P"
+  }
+}
