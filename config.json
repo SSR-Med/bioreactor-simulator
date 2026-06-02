@@ -4,8 +4,8 @@
     "max": 72,
     "step": 0.1,
     "default": 72,
-    "unit": "t",
-    "axis_label": "t",
+    "unit": "h",
+    "axis_label": "Tiempo (h)",
     "input_label": "Tiempo de simulaci\u00f3n"
   },
   "variables": {
@@ -26,40 +26,33 @@
       "unit": "g/L",
       "description": "Concentraci\u00f3n de producto",
       "color": "#f78166"
-    },
-    "V": {
-      "label": "Volumen V",
-      "unit": "m\u00b3",
-      "description": "Volumen del biorreactor",
-      "color": "#d2a8ff"
     }
   },
   "initial_conditions": {
     "X": { "value": 0.05, "label": "X(0)" },
     "S": { "value": 40.0, "label": "S(0)" },
-    "P": { "value": 0.0, "label": "P(0)" },
-    "V": { "value": 47.1, "label": "V(0)" }
+    "P": { "value": 0.0, "label": "P(0)" }
   },
   "equations": {
     "V": {
-      "expr": "47.1 + 0.28 * t",
-      "latex": "V(t) = 47.1 + 0.28\\,t"
+      "expr": "67.3",
+      "latex": "V = 67.3\\,m^3"
     },
     "mu": {
       "expr": "0.28 * S / (5 + S)",
       "latex": "\\mu = \\dfrac{0.28\\,S}{5 + S}"
     },
     "dX_dt": {
-      "expr": "mu * X - (0.28 / (47.1 + 0.28 * t)) * X",
-      "latex": "\\dfrac{dX}{dt} = \\mu X - \\dfrac{0.28}{47.1 + 0.28t}\\,X"
+      "expr": "mu * X",
+      "latex": "\\dfrac{dX}{dt} = 0.28\\,\\dfrac{S}{5+S}\\,X"
     },
     "dS_dt": {
-      "expr": "(0.28 / (47.1 + 0.28 * t)) * (200 - S) - 2.478 * mu * X",
-      "latex": "\\dfrac{dS}{dt} = \\dfrac{0.28}{47.1 + 0.28t}\\,(200 - S) - 2.478\\,\\mu X"
+      "expr": "-2.478 * mu * X",
+      "latex": "\\dfrac{dS}{dt} = -2.478\\,\\dfrac{S}{5+S}\\,X"
     },
     "dP_dt": {
-      "expr": "1.436 * mu * X - (0.28 / (47.1 + 0.28 * t)) * P",
-      "latex": "\\dfrac{dP}{dt} = 1.436\\,\\mu X - \\dfrac{0.28}{47.1 + 0.28t}\\,P"
+      "expr": "1.436 * mu * X",
+      "latex": "\\dfrac{dP}{dt} = 1.436\\,\\dfrac{S}{5+S}\\,X"
     }
   }
 }

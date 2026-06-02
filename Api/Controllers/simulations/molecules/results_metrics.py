@@ -9,7 +9,7 @@ def render_results_metrics(result, t_end, cfg):
 
     render_section_title(f"Valores en t = {t_end:.2f} {time_unit}")
 
-    cols = st.columns(4)
+    cols = st.columns(len(result.variables))
     for i, (var_name, var_res) in enumerate(result.variables.items()):
         with cols[i]:
             info = variables_cfg[var_name]

@@ -99,16 +99,15 @@ def render_plots(result, cfg):
     t = result.t
     variables_cfg = cfg["variables"]
     axis_label = cfg["time"]["axis_label"]
+    n_vars = len(result.variables)
 
     render_section_title("Perfiles temporales")
 
-    row1_cols = st.columns(2)
-    row2_cols = st.columns(2)
-    grid = [row1_cols[0], row1_cols[1], row2_cols[0], row2_cols[1]]
+    cols = st.columns(n_vars)
 
     for i, (var_name, var_res) in enumerate(result.variables.items()):
         info = variables_cfg[var_name]
         fig = _build_single_plot(
             t, var_name, var_res, info["color"], info["label"], axis_label
         )
-        grid[i].plotly_chart(fig, width="stretch")
+        cols[i].plotly_chart(fig, width="stretch")
